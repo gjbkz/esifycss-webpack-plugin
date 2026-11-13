@@ -21,34 +21,21 @@
         "test": "run-s test:*",
         "test:type": "tsc --noEmit",
         "test:unit": "ava",
-        "lint": "eslint --ext .ts src",
+        "lint": "biome lint src",
         "version": "run-s version:changelog version:add",
         "version:changelog": "npx @nlib/changelog --output CHANGELOG.md",
         "version:add": "git add ."
     },
     "devDependencies": {
-        "@nlib/eslint-config": "3.17.28",
-        "@nlib/githooks": "0.1.0",
-        "@typescript-eslint/eslint-plugin": "4.33.0",
-        "@typescript-eslint/parser": "4.33.0",
+        "@biomejs/biome": "2.6.7",
+        "@nlib/githooks": "0.2.2",
+        "@types/node": "18.19.130",
         "ava": "3.15.0",
-        "eslint": "7.32.0",
         "lint-staged": "11.2.6",
         "npm-run-all": "4.1.5",
-        "ts-node": "10.9.1",
-        "typescript": "4.8.3",
-        "webpack": "5.76.0"
-    },
-    "eslintConfig": {
-        "extends": [
-            "@nlib/eslint-config"
-        ],
-        "env": {
-            "node": true
-        },
-        "rules": {
-            "@nlib/no-globals": "off"
-        }
+        "ts-node": "10.9.2",
+        "typescript": "4.9.5",
+        "webpack": "5.112.2"
     },
     "ava": {
         "extensions": [
@@ -62,11 +49,8 @@
         ]
     },
     "lint-staged": {
-        "*.ts": [
-            "eslint"
-        ],
-        "*.js": [
-            "eslint"
+        "*.{ts,js}": [
+            "biome lint --no-errors-on-unmatched"
         ]
     },
     "renovate": {
