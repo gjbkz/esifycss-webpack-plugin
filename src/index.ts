@@ -2,7 +2,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import type * as webpack from 'webpack';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type CallbackParameter<T> = T extends (O: any, C: (arg: infer Arg) => any) => any ? Arg : never;
 type NormalModuleFactory = CallbackParameter<webpack.Compiler['hooks']['normalModuleFactory']['tap']>;
 type ResolveData = CallbackParameter<NormalModuleFactory['hooks']['resolve']['tapPromise']>;
@@ -48,7 +47,6 @@ const resolveModuleCss = async (resolveData: ResolveData) => {
         const extended = `${resolveData.request}${extension}`;
         const directory = getContextDirectory(resolveData);
         if (await fileExistsAt(path.join(directory, extended))) {
-            // eslint-disable-next-line require-atomic-updates
             resolveData.request = extended;
             return;
         }
@@ -57,7 +55,6 @@ const resolveModuleCss = async (resolveData: ResolveData) => {
 
 export class EsifyCSSWebpackPlugin {
 
-    // eslint-disable-next-line class-methods-use-this
     public apply(input: ObjectWithHooks) {
         if (isNormalModuleFactoryLike(input)) {
             input.hooks.resolve.tapPromise(pluginName, resolveModuleCss);
