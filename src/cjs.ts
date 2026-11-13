@@ -1,2 +1,4 @@
-const index = require('./index.js');
-module.exports = Object.assign(index.EsifyCSSWebpackPlugin || index.defaultExport, index);
+import EsifyCSSWebpackPlugin, * as index from './index.js';
+
+const exported = Object.assign(EsifyCSSWebpackPlugin, index);
+export = exported;

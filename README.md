@@ -20,3 +20,7 @@ module.exports = {
   ],
 };
 ```
+
+## Development
+
+Use Node.js 26 for dependency installation, builds, lint, and tests (`npm ci`, `npm run lint`, `npm test`). CI also runs the compiled package and resolver tests on Node.js 12, 14, 16, 22, and 24 to verify runtime compatibility.
